@@ -41,7 +41,7 @@
 
                     <div class="form-group my-2 row align-items-start">
                         <label class="col fw-bold" for="">Precio:</label>
-                        <input class="col form-control" type="text" id="" name="" value="{{ $order['platillo'] }}" readonly>
+                        <input class="col form-control" type="text" id="" name="" value="{{ $order['platillo'] }} Lps" readonly>
                     </div>
 
                     <div class="form-group my-2 row align-items-start">
