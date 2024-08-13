@@ -1,0 +1,44 @@
+img.home-item {
+    border-radius: 100px;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav.gradient-custom {
+ 
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to bottom, rgba(0,122,14,1), rgba(0,0,0,1))
+    /* background: linear-gradient(to right, red, blue); */
+}
+
+img#welcome-logo {
+
+    width: 100px;
+    height: 100px;
+}
+
+div.modal-gradient {
+
+    background: linear-gradient(to bottom, rgba(0,122,14,1), rgba(0,0,0,1))
+}
+
+img.menu-selected-img {
+
+    width: 230px;
+    border-radius: 10px;
+}
+
+img.menu-items-img {
+
+    width: 190px;
+    border-radius: 10px;
+}
+
+a.order-option:hover {
+
+    color: #a50000;
+    opacity: 0.8;
+    transition: 0.3s;
+}
