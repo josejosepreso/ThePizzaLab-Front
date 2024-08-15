@@ -18,35 +18,24 @@
         
         <img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png">
 
+
       </div>
     </nav>
 
     <div class="container">
 
-
-        <div class="d-flex justify-content-center mt-4">
-            <h2 class="text-black fw-bold">Informacion de la especialidad</h2>
+        <div class="d-flex justify-content-center">
+            <h2 class="text-black fw-bold mt-4">Crear un platillo</h2>
         </div>
         <div class="d-flex justify-content-center">
-            <h4 class="text-black">Agregue la informacion requerida</h4>
+            <h4 class="text-black mt-2">Agregue la informacion requerida</h4>
         </div>
 
-        <div class="d-flex justify-content-center my-4">
-            <div class="p-4 bg-light shadow-lg" style="width:30vw;border-radius:10px;">
+        <div class="d-flex justify-content-center my-3">
+            <div class="p-4 bg-white shadow-lg" style="width:30vw;border-radius:10px;">
 
                 <div class="form-container">
-                    <form method="GET">
-
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="id">ID:</label>
-                            <input class="col form-control" id="" name="id" value="{{ $idEspecialidad }}" readonly>
-                        </div>
-
-
-
-
-
-
+                    <form action="{{ route('guardar.platillo') }}" method="GET" id="main-form">
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="nombre">Nombre:</label>
@@ -73,29 +62,6 @@
                             <a data-bs-toggle="modal" data-bs-target="div#ingredientsModal"  class="col btn bg-black text-white fw-bold">Seleccionar</a>
                         </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="availability">Disponibilidad:</label>
-                            <input class="col form-control" type="text" id="" name="availability" value="" required>
-                        </div>
-
                         <div class="d-flex justify-content-center">
                             <button class="mt-4 px-4 btn bg-black text-white fw-bold" type="submit">Guardar</button>
                         </div>
@@ -106,6 +72,7 @@
             </div>
         </div>
     </div>
+
 
 
     <div class="modal fade" id="ingredientsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -139,6 +106,8 @@
         </div>
       </div>
     </div>
+
+
 
 
 

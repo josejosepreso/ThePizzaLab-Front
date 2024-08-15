@@ -66,11 +66,11 @@
             <div class="form-container">
                 <form action="{{ route('iniciar.sesion') }}" method="GET">
                     <div class="form-group my-2 fw-bold">
-                        <label for="name">Usuario o Correo:</label>
-                        <input class="form-control" type="text" id="email" name="email" required>
+                        <label for="email">Usuario o Correo:</label>
+                        <input class="form-control" type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group my-2 fw-bold">
-                        <label for="precio">Contrase;a:</label>
+                        <label for="password">Contrase;a:</label>
                         <input class="form-control" type="password" id="password" name="password"  required>
                     </div>
                     <div class="d-flex justify-content-center">

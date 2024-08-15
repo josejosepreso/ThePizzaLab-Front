@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use GuzzleHttp\Client;
+
 use Config;
 
 
@@ -11,6 +13,21 @@ class administradorController extends Controller
 {
     //
     public function bienvenida() {
+
+        // // Create a client with a base URI
+        // $client = new Client(['base_uri' => 'localhost:8091/api/']);
+
+        // // Send a request to 
+        // $response = $client->request('GET', 'usuarios/obtener/todos');
+
+        // // print_r($response->getBody()->getContents());
+        // // print_r((string) $response->getBody());
+
+        // $data = json_decode($response->getBody()->getContents());
+
+        // print_r($data);
+
+        // return;
 
         return view('bienvenida');
     }
@@ -82,7 +99,10 @@ class administradorController extends Controller
 
         $idEspecialidad = $id;
 
-        return view('especialidad', compact('idEspecialidad'));
+
+        $data = $this->obtenerIngredientes();
+
+        return view('especialidad', compact('idEspecialidad', 'data'));
     }
 
     public function orden(Request $request) {
@@ -153,12 +173,79 @@ class administradorController extends Controller
         return view('metodo_pago');
     }
 
+    private function obtenerIngredientes() {
+
+	    $data = array(
+            array(
+                'id' => '1',
+                'name' => 'Sal',
+                'unit' => 'Gramos',
+            ),
+            array(
+                'id' => '2',
+                'name' => 'Agua',
+                'unit' => 'Litros',
+            ),
+            array(
+                'id' => '3',
+                'name' => 'Azucar',
+                'unit' => 'Gramos',
+            ),
+            array(
+                'id' => '4',
+                'name' => 'Salsa',
+                'unit' => 'Gramos',
+            ),
+
+        );
+
+        return $data;
+
+    }
+
+    public function crearPlatillo() {
+
+        $data = $this->obtenerIngredientes();
+
+        return view('crearPlatillo', compact('data'));
+    }
+
+    public function guardarPlatillo(Request $request) {
+
+        print_r($request->all());
+    }
+
+    public function verInventario() {
+
+        return view('inventario');
+    }
+
 
 
 
 
 
     public function iniciarSesion(Request $request) {
+
+        $email = $request->email;
+        $password = $request->password;
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+
+        $response = $client->request('GET', 'usuario/buscar',[
+                'body' => json_encode([
+                    'email' => $email,
+                    'contrasena' => $password
+                ])
+        ]);
+
+        $data = json_decode($response->getBody()->getContents());
+
+        print_r($data);
+
+
+
+        return;
 
         if($request->email == "administrador") {
 

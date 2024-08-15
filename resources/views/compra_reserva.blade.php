@@ -42,10 +42,7 @@
                             <label class="col" for="cantidad">Cantidad</label>
                             <input class="col form-control" id="" name="cantidad" value="{{ $data['cantidad'] }}" readonly>
                         </div>
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="subtotal">Subtotal</label>
-                            <input class="col form-control" id="" name="subtotal" value="{{ 2*$data['cantidad'] }}" readonly>
-                        </div>
+
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="personas">Cantidad de personas</label>
                             <input class="col form-control" id="" name="personas" value="{{ $data['personas'] }}" readonly>
@@ -62,6 +59,25 @@
                             <label class="col" for="mesa">Numero de mesa</label>
                             <input class="col form-control" id="" name="mesa" value="{{ $data['mesa'] }}" readonly>
                         </div>
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="subtotal">Subtotal</label>
+                            <input class="col form-control" id="" name="subtotal" value="{{ 2*$data['cantidad'] }}" readonly>
+                        </div>
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="isv">ISV</label>
+                            <input class="col form-control" id="" name="isv" value="{{ 0.15*$data['id'] }}" readonly>
+                        </div>
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="total">Total</label>
+                            <input class="col form-control" id="" name="total" value="{{ 0 }}" readonly>
+                        </div>
+
+
+
+
 
                         <div class="d-flex justify-content-center">
                             <button class="mt-4 px-4 btn bg-black text-white fw-bold" type="submit">Confirmar</button>

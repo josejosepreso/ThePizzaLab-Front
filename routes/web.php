@@ -37,3 +37,16 @@ Route::get('/menu', [administradorController::class, 'menu'])->name('menu');
 Route::get('/pago', [administradorController::class, 'pago'])->name('metodo.pago');
 
 Route::get('/compra', [administradorController::class, 'informacionCompra'])->name('ver.compra');
+
+
+
+
+Route::get('/administracion/inventario', [administradorController::class, 'verInventario'])->name('ver.inventario');
+
+
+
+
+
+Route::get('/administracion/especialidades/crear', [administradorController::class, 'crearPlatillo'])->name('crear.platillo');
+
+Route::get('/administracion/especialidades/crear/guardar', [administradorController::class, 'guardarPlatillo'])->name('guardar.platillo');
