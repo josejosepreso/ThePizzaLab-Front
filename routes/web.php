@@ -2,51 +2,56 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\administradorController;
+use App\Http\Controllers\administradorControlador;
+use App\Http\Controllers\clienteControlador;
+use App\Http\Controllers\Controlador;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/administracion/inicio', [administradorController::class, 'inicio'])->name('inicio');
 
-Route::get('/login', [administradorController::class, 'iniciarSesion'])->name('iniciar.sesion');
 
-Route::get('/', [administradorController::class, 'bienvenida'])->name('bienvenida');
+Route::get('/', [Controlador::class, 'bienvenida'])->name('bienvenida');
 
-Route::post('/registro', [administradorController::class, 'registrarUsuario'])->name('registrar.usuario');
+Route::get('/login', [Controlador::class, 'iniciarSesion'])->name('iniciar.sesion');
 
-Route::get('/administracion/especialidades/', [administradorController::class, 'especialidades'])->name('especialidades');
-
-Route::get('/administracion/especialidad/{id}', [administradorController::class, 'editarEspecialidad'])->name('editar.especialidad');
-
-Route::get('/especialidad/{id}', [administradorController::class, 'verEspecialidad'])->name('ver.especialidad');
-
-Route::get('/orden', [administradorController::class, 'orden'])->name('crear.orden');
-
-Route::get('/orden/reserva', [administradorController::class, 'reserva'])->name('reserva');
-
-Route::get('/orden/domicilio', [administradorController::class, 'domicilio'])->name('pedir.domicilio');
-
-Route::get('/administracion/reservas', [administradorController::class, 'reservas'])->name('ver.reservas');
-
-Route::get('/administracion/pedidos', [administradorController::class, 'pedidos'])->name('ver.pedidos');
-
-Route::get('/menu', [administradorController::class, 'menu'])->name('menu');
-
-Route::get('/pago', [administradorController::class, 'pago'])->name('metodo.pago');
-
-Route::get('/compra', [administradorController::class, 'informacionCompra'])->name('ver.compra');
+Route::post('/registro', [Controlador::class, 'registrarUsuario'])->name('registrar.usuario');
 
 
 
 
-Route::get('/administracion/inventario', [administradorController::class, 'verInventario'])->name('ver.inventario');
+Route::get('/administracion/inicio', [administradorControlador::class, 'inicio'])->name('inicio');
+
+Route::get('/administracion/especialidades/', [administradorControlador::class, 'especialidades'])->name('especialidades');
+
+Route::get('/administracion/especialidad/{id}', [administradorControlador::class, 'editarEspecialidad'])->name('editar.especialidad');
+
+Route::get('/administracion/reservas', [administradorControlador::class, 'reservas'])->name('ver.reservas');
+
+Route::get('/administracion/pedidos', [administradorControlador::class, 'pedidos'])->name('ver.pedidos');
+
+Route::get('/administracion/inventario', [administradorControlador::class, 'verInventario'])->name('ver.inventario');
+
+Route::get('/administracion/especialidades/crear', [administradorControlador::class, 'crearPlatillo'])->name('crear.platillo');
+
+Route::get('/administracion/especialidades/crear/guardar', [administradorControlador::class, 'guardarPlatillo'])->name('guardar.platillo');
 
 
 
 
 
-Route::get('/administracion/especialidades/crear', [administradorController::class, 'crearPlatillo'])->name('crear.platillo');
 
-Route::get('/administracion/especialidades/crear/guardar', [administradorController::class, 'guardarPlatillo'])->name('guardar.platillo');
+
+Route::get('/orden', [clienteControlador::class, 'orden'])->name('crear.orden');
+
+Route::get('/orden/reserva', [clienteControlador::class, 'reserva'])->name('reserva');
+
+Route::get('/orden/domicilio', [clienteControlador::class, 'domicilio'])->name('pedir.domicilio');
+Route::get('/menu', [clienteControlador::class, 'menu'])->name('menu');
+
+Route::get('/pago', [clienteControlador::class, 'pago'])->name('metodo.pago');
+
+Route::get('/compra', [clienteControlador::class, 'informacionCompra'])->name('ver.compra');
+
+Route::get('/especialidad/{id}', [clienteControlador::class, 'verEspecialidad'])->name('ver.especialidad');

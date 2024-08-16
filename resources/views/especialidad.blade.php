@@ -120,10 +120,10 @@
                 <p>Ingrese la cantidad de ingredientes que contiene este platillo.</p>
                 @foreach($data as $ingrediente)
                     <div class="form-group mb-2 mx-3">
-                        <label class="fw-bold" for="{{ $ingrediente['name'] }}">{{ $ingrediente['name'] }}:</label>
                         <div class="row">
+                            <label class="col-3 fw-bold" for="{{ $ingrediente['name'] }}">{{ $ingrediente['name'] }}:</label>
                             <input form="main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['name'] }}" value="0" required>
-                            <p class="small col-3">{{ $ingrediente['unit'] }}</p>
+                            <p class="small col">{{ $ingrediente['unit'] }}</p>
                         </div>
                     </div>
                 @endforeach

@@ -14,6 +14,10 @@
 </head>
 <body class="bg-light">
 
+    @isset($status)
+      <div id="loginLabel" class="d-flex justify-content-center fw-bold text-white bg-danger">Usuario no encontrado</div>
+    @endif
+
     <nav class="navbar navbar-expand-lg bg-success bg-gradient shadow">
       <div class="container-fluid p-3">
         
@@ -37,13 +41,13 @@
     <div class="container text-center">
       <div class="row align-items-start">
         <div class="col mt-4">
-            <p class="h2 fw-bold mb-2 text-black">Te damos la bienvenida a la pagina administrativa de</p>
+            <p class="h2 fw-bold mb-2 text-black">Te damos la bienvenida a la pagina principal de</p>
             <img style="width:170px;height:170px;" src="{{ URL::to('/') }}/img/logo1.png" id="welcome-logo">
             <p class="my-3 lead text-black">Un espacio en el que nuestros administradores se encargaran de la gestion operativa de nuestro restaurante.</p>
             <p class="my-4 lead text-black">Crea tu cuenta o inicia sesion.</p>
         </div>
         <div style="height:60vh;" class="col d-flex align-items-center justify-content-center">
-            <img style="width:400px;border-radius:20px;" class="shadow-lg" src="{{ URL::to('/') }}/img/Landing.png">
+            <img style="width:500px;border-radius:20px;" class="shadow-lg" src="{{ URL::to('/') }}/img/Landing.png">
         </div>
 
       </div>
@@ -99,14 +103,23 @@
             <div class="form-container">
                 <form action="{{ route('registrar.usuario') }}" method="POST">
                     @csrf
+
+                    <div class="form-group my-2 fw-bold">
+                        <label for="name">Nombre:</label>
+                        <input class="form-control" type="text" id="nameReg" name="name"  required>
+                    </div>
+
+                    <div class="form-group my-2 fw-bold">
+                        <label for="lastName">Apellido:</label>
+                        <input class="form-control" type="text" id="nameReg" name="lastName"  required>
+                    </div>
+
+
                     <div class="form-group my-2 fw-bold">
                         <label for="email">Correo electronico:</label>
                         <input class="form-control" type="email" id="emailReg" name="email" required>
                     </div>
-                    <div class="form-group my-2 fw-bold">
-                        <label for="name">Nombre de usuario:</label>
-                        <input class="form-control" type="text" id="nameReg" name="name"  required>
-                    </div>
+
                     <div class="form-group my-2 fw-bold">
                         <label for="password">Contrase;a:</label>
                         <input class="form-control" type="password" id="passwordReg" name="password"  required>
@@ -123,6 +136,15 @@
       </div>
     </div>
 
+    <script>
+      const label = document.querySelector("div#loginLabel");
+
+      if(label != null) {
+        setTimeout(function() {
+          label.remove();
+        }, 3000);
+      }
+    </script>
 
 </body>
 </html>
