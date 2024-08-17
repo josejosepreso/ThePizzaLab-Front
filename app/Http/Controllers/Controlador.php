@@ -24,12 +24,14 @@ class Controlador extends Controller
         $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
         $response = $client->request('GET', 'usuarios/buscar',[
                 'body' => json_encode([
-                    'correo' => $email,
-                    'contrasena' => $password
+                    'email' => $email,
+                    'contrasenia' => $password
                 ])
         ]);
 
         $data = json_decode($response->getBody(), true);
+
+        // print_r($data);
 
         if(sizeof($data) === 0) {
 
@@ -38,9 +40,9 @@ class Controlador extends Controller
             return view('bienvenida', ['status' => $status]);
         } else {
 
-            session()->put('user', $data[0]['correo']);
+            session()->put('user', $data[0]['email']);
 
-            $tipousuario = $data[0]['tipousuario'];
+            $tipousuario = $data[0]['tipoUsuario']['idTipoUsuario'];
             if($tipousuario == 1) {
                 return view('inicio');
             }

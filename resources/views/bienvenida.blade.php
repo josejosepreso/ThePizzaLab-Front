@@ -41,7 +41,7 @@
     <div class="container text-center">
       <div class="row align-items-start">
         <div class="col mt-4">
-            <p class="h2 fw-bold mb-2 text-black">Te damos la bienvenida a la pagina principal de</p>
+            <p class="h2 fw-bold mb-2 text-black">Te damos la bienvenida a la pagina oficial de <em><strong>The Pizza Lab</strong></em></p>
             <img style="width:170px;height:170px;" src="{{ URL::to('/') }}/img/logo1.png" id="welcome-logo">
             <p class="my-3 lead text-black">Un espacio en el que nuestros administradores se encargaran de la gestion operativa de nuestro restaurante.</p>
             <p class="my-4 lead text-black">Crea tu cuenta o inicia sesion.</p>
