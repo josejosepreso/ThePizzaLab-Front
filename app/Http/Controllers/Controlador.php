@@ -68,10 +68,6 @@ class Controlador extends Controller
 
         $user = json_decode($response->getBody(), true);
 
-        print_r($user);
-
-        return;
-
         return redirect('/menu');
     }
 
