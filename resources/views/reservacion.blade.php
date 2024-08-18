@@ -51,7 +51,7 @@
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="hora">Hora:</label>
-                            <input class="col form-control" type="time" id="" name="hora" value="" required>
+                            <input class="col form-control" type="time" min="08:00:00" max="22:00:00" id="" name="hora" value="" required>
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="mesa">Numero de mesa:</label>

@@ -28,24 +28,62 @@
             <h2 class="text-black fw-bold mt-4">Informacion de la compra</h2>
         </div>
 
-        <div class="d-flex justify-content-center mt-4">
+        <div class="d-flex justify-content-center my-4">
             <div class="p-4 bg-light shadow-lg" style="width:30vw;border-radius:10px;">
 
                 <div class="form-container">
                     <form action="{{ route('metodo.pago') }}" method="GET">
 
                         <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="platillo">Platillo</label>
-                            <input class="col form-control" id="" name="platillo" value="{{ $data['id'] }}" readonly>
+                            <label class="col" for="">Platillo</label>
+                            <input class="col form-control" id="" name="" value="{{ $platillo['nombre'] }}" readonly>
                         </div>
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">Precio unitario</label>
+                            <input class="col form-control" id="" name="" value="{{ $platillo['precio'] }} Lps" readonly>
+                        </div>
+
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="cantidad">Cantidad</label>
                             <input class="col form-control" id="" name="cantidad" value="{{ $data['cantidad'] }}" readonly>
                         </div>
+
+                        @php
+                            $subtotal = $platillo['precio'] * $data['cantidad'];
+                        @endphp
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="subtotal">Subtotal</label>
-                            <input class="col form-control" id="" name="subtotal" value="{{ 2*$data['cantidad'] }}" readonly>
+                            <input class="col form-control" id="" name="subtotal" value="{{ $subtotal }} Lps" readonly>
                         </div>
+
+                        @php
+                            $precio_envio = $platillo['precio'] * 0.12;
+                        @endphp
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">Precio de envio</label>
+                            <input class="col form-control" id="" name="" value="{{ $precio_envio }} Lps" readonly>
+                        </div>
+
+                        @php
+                            $isv = round(0.15 * ($subtotal + $precio_envio), 2);
+                        @endphp
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">ISV</label>
+                            <input class="col form-control" id="" name="isv" value="{{ $isv }} Lps" readonly>
+                        </div>
+
+                        @php
+                            $total = $subtotal + $precio_envio + $isv
+                        @endphp
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">Total</label>
+                            <input class="col form-control" id="" name="isv" value="{{ $total }} Lps" readonly>
+                        </div>
+
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="direccion">Direccion</label>
                             <input class="col form-control" id="" name="direccion" value="{{ $data['direccion'] }}" readonly>

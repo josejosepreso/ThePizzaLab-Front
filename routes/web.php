@@ -37,6 +37,12 @@ Route::get('/administracion/especialidades/crear', [administradorControlador::cl
 
 Route::get('/administracion/especialidades/crear/guardar', [administradorControlador::class, 'guardarPlatillo'])->name('guardar.platillo');
 
+Route::get('/administracion/usuarios', [administradorControlador::class, 'verUsuarios'])->name('ver.usuarios');
+
+Route::get('/administracion/usuarios/{id}', [administradorControlador::class, 'verUsuario'])->name('ver.usuario');
+
+Route::get('/administracion/usuarios/{id}/actualizar', [administradorControlador::class, 'actualizarUsuario'])->name('actualizar.usuario');
+
 
 
 

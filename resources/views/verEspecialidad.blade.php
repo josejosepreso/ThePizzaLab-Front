@@ -26,27 +26,28 @@
             <div class="p-4 bg-white shadow-lg" style="width:30vw;border-radius:10px;">
 
             <div class="d-flex justify-content-center">
-                <img class="rounded-3 menu-selected-img" src="{{ URL::to('/') }}/img/menu/{{ $order['platillo'] }}.jpg">
+                <img class="rounded-3 menu-selected-img" src="{{ URL::to('/') }}/img/menu/{{ $data['img'] }}.jpg">
             </div>
 
             <p class="mt-3">
-                <strong class="fs-4">Especialidad: {{ $order['platillo'] }}</strong>
+                <strong class="fs-4">{{ $data['nombre'] }}</strong>
+                <input style="display:none;" name="idPlatillo" value="{{ $data['idPlatillo'] }}" type="text">
                 </br>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio sequi quisquam consequatur nemo nesciunt reprehenderit vero, eos magnam, dignissimos obcaecati excepturi ab fuga ea sunt mollitia eveniet omnis molestiae. Nostrum!
+                <p>{{ $data['descripcion'] }}</p>
             </p>
             <div class="form-container">
                 <form action="{{ route('crear.orden') }}" method="GET">
 
-                    <input name="id" value="{{ $order['platillo'] }}" style="display:none;">
+                    <input name="id" value="{{ $data['idPlatillo'] }}" style="display:none;">
 
                     <div class="form-group my-2 row align-items-start">
                         <label class="col fw-bold" for="">Precio:</label>
-                        <input class="col form-control" type="text" id="" name="" value="{{ $order['platillo'] }} Lps" readonly>
+                        <input class="col form-control" type="text" id="" name="" value="{{ $data['precio'] }} Lps" readonly>
                     </div>
 
                     <div class="form-group my-2 row align-items-start">
                         <label class="col fw-bold" for="cantidad">Cantidad:</label>
-                        <input class="col form-control" type="number" id="" name="cantidad" value="1" required>
+                        <input class="col form-control" type="number" max="10" min="1" id="" name="cantidad" value="1" required>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button class="mt-4 px-4 btn bg-black text-white fw-bold" type="submit">Siguiente</button>

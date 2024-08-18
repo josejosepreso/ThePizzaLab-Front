@@ -19,55 +19,14 @@ class administradorControlador extends Controller
         return view('inicio');
     }
 
-    private function getData() {
-
-	    $data = array(
-            array(
-                'id' => '1',
-                'name' => 'Cheese pizza',
-                'description' => 'Nuestra clasica pizza de queso',
-                'img' => '1.jpg'
-            ),
-            array(
-                'id' => '2',
-                'name' => 'Pepperoni',
-                'description' => 'Queso mozarella, parmesano, pepperoni y oregano',
-                'img' => '2.jpg'
-            ),
-            array(
-                'id' => '3',
-                'name' => 'Vegetariana',
-                'description' => 'Queso mozarella, cebolla, pimiento, champinones, aceitunas',
-                'img' => '3.jpg'
-            ),
-            array(
-                'id' => '4',
-                'name' => 'Hawaiana',
-                'description' => 'Pizza de pi;a y jamon',
-                'img' => '4.jpg'
-            ),
-            array(
-                'id' => '1',
-                'name' => 'Pepperoni',
-                'description' => 'Queso mozarella, parmesano, pepperoni y oregano',
-                'img' => '1.jpg'
-            ),
-            array(
-                'id' => '1',
-                'name' => 'Pepperoni',
-                'description' => 'Queso mozarella, parmesano, pepperoni y oregano',
-                'img' => '1.jpg'
-            ),
-        );
-
-        return $data;
-    }
-
     public function especialidades() {
 
         if(session()->get('user') === null) return redirect('/');
 
-	    $data = $this->getData();
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'platillos/obtener/todos');
+
+        $data = json_decode($response->getBody(), true);
 
         return view('especialidades', compact('data'));
     }
@@ -99,32 +58,12 @@ class administradorControlador extends Controller
 
     private function obtenerIngredientes() {
 
-	    $data = array(
-            array(
-                'id' => '1',
-                'name' => 'Sal',
-                'unit' => 'Gramos',
-            ),
-            array(
-                'id' => '2',
-                'name' => 'Agua',
-                'unit' => 'Litros',
-            ),
-            array(
-                'id' => '3',
-                'name' => 'Azucar',
-                'unit' => 'Gramos',
-            ),
-            array(
-                'id' => '4',
-                'name' => 'Salsa',
-                'unit' => 'Gramos',
-            ),
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'ingredientes/obtener/todos');
 
-        );
+        $ingredients = json_decode($response->getBody(), true);
 
-        return $data;
-
+        return $ingredients;
     }
 
     public function crearPlatillo() {
@@ -147,7 +86,43 @@ class administradorControlador extends Controller
 
         if(session()->get('user') === null) return redirect('/');
 
-        return view('inventario');
+        $ingredients = $this->obtenerIngredientes();
+
+        return view('inventario', compact('ingredients'));
+    }
+
+    public function verUsuarios() {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'usuarios/obtener/todos');
+
+        $users = json_decode($response->getBody(), true);
+
+        return view('usuarios', compact('users'));
+    }
+
+    public function verUsuario($id) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'usuarios/' . $id);
+
+        $user = json_decode($response->getBody(), true);
+
+        return view('usuario', compact('user'));
+    }
+
+    public function actualizarUsuario($id) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('PUT', 'usuarios/editar/' . $id);
+
+        return redirect("/administracion/usuarios");
     }
 
 }

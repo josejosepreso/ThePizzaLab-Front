@@ -23,33 +23,29 @@
     </nav>
 
     <div class="container">
-        <h2 class="text-black my-4 fw-bold">Gestion de inventario</h2>
+        <h2 class="text-black my-4 fw-bold">Gestion de usuarios</h2>
 
         <table class="table table-light rounded-4 overflow-hidden shadow">
           <thead>
             <tr>
               <th scope="col">Id</th>
+              <th scope="col">Correo</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Cantidad disponible</th>
-              <th scope="col">Punto de reorden</th>
-              <th scope="col">Unidad de medida</th>
-              <th scope="col">Proveedor</th>
-              <th scope="col">Opciones</th>
+              <th scope="col">Tipo usuario</th>
+              <th scope="col">Opcion</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($ingredients as $ingredient)
-              <tr>
-                <th scope="row">{{ $ingredient['idIngrediente'] }}</th>
-                <td>{{ $ingredient['nombre'] }}</td>
-                <td>{{ $ingredient['cantidadDisponible'] }}</td>
-                <td>{{ $ingredient['puntoreorden'] }}</td>
-                <td>{{ $ingredient['unidad'] }}</td>
-                <td>{{ $ingredient['proveedor']['nombre'] }}</td>
-                <td><a href="#">Crear pedido</a></td>
-              </tr>
+            @foreach($users as $user)
+                <tr>
+                  <th scope="row">{{ $user['idUsuario'] }}</th>
+                  <td>{{ $user['email'] }}</td>
+                  <td>{{ $user['nombre'] }} {{ $user['apellido'] }}</td>
+                  <td>{{ $user['tipoUsuario']['descripcion'] }}</td>
+                  <td><a href="{{ route('ver.usuario', $user['idUsuario']) }}">Ver</a></td>
+                </tr>
             @endforeach
-          </tbody>
+           </tbody>
         </table>
     </div>
 
@@ -57,5 +53,4 @@
 
 </body>
 </html>
-
 

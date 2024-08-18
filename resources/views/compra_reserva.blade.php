@@ -36,12 +36,43 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="platillo">Platillo</label>
-                            <input class="col form-control" id="" name="platillo" value="{{ $data['id'] }}" readonly>
+                            <input class="col form-control" id="" name="platillo" value="{{ $platillo['nombre'] }}" readonly>
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="cantidad">Cantidad</label>
                             <input class="col form-control" id="" name="cantidad" value="{{ $data['cantidad'] }}" readonly>
                         </div>
+
+                        @php
+                            $subtotal = $platillo['precio'] * $data['cantidad'];
+                        @endphp
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="subtotal">Subtotal</label>
+                            <input class="col form-control" id="" name="subtotal" value="{{ $subtotal }}" readonly>
+                        </div>
+
+                        @php
+                            $isv = round(0.15 * ($subtotal), 2);
+                        @endphp
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="isv">ISV</label>
+                            <input class="col form-control" id="" name="isv" value="{{ $isv }}" readonly>
+                        </div>
+
+                        @php
+                            $total = $subtotal + $isv
+                        @endphp
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="total">Total</label>
+                            <input class="col form-control" id="" name="total" value="{{ $total }}" readonly>
+                        </div>
+
+
+
+
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="personas">Cantidad de personas</label>
@@ -60,20 +91,7 @@
                             <input class="col form-control" id="" name="mesa" value="{{ $data['mesa'] }}" readonly>
                         </div>
 
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="subtotal">Subtotal</label>
-                            <input class="col form-control" id="" name="subtotal" value="{{ 2*$data['cantidad'] }}" readonly>
-                        </div>
 
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="isv">ISV</label>
-                            <input class="col form-control" id="" name="isv" value="{{ 0.15*$data['id'] }}" readonly>
-                        </div>
-
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="total">Total</label>
-                            <input class="col form-control" id="" name="total" value="{{ 0 }}" readonly>
-                        </div>
 
 
 

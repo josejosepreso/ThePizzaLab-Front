@@ -62,6 +62,13 @@
                             <a data-bs-toggle="modal" data-bs-target="div#ingredientsModal"  class="col btn bg-black text-white fw-bold">Seleccionar</a>
                         </div>
 
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">Archivo de imagen:</label>
+                            <input class="col form-control" id="" name="" type="text">
+                        </div>
+                    
+
                         <div class="d-flex justify-content-center">
                             <button class="mt-4 px-4 btn bg-black text-white fw-bold" type="submit">Guardar</button>
                         </div>
@@ -87,10 +94,10 @@
                 <p>Ingrese la cantidad de ingredientes que contiene este platillo.</p>
                 @foreach($data as $ingrediente)
                     <div class="form-group mb-2 mx-3">
-                        <label class="fw-bold" for="{{ $ingrediente['name'] }}">{{ $ingrediente['name'] }}:</label>
                         <div class="row">
-                            <input form="main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['name'] }}" value="0" required>
-                            <p class="small col-3">{{ $ingrediente['unit'] }}</p>
+                            <label class="col fw-bold" for="{{ $ingrediente['nombre'] }}">{{ $ingrediente['nombre'] }}:</label>
+                            <input form="col main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['nombre'] }}" value="0" required>
+                            <p class="small col">{{ $ingrediente['unidad'] }}</p>
                         </div>
                     </div>
                 @endforeach

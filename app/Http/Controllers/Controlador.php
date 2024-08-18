@@ -29,30 +29,48 @@ class Controlador extends Controller
                 ])
         ]);
 
-        $data = json_decode($response->getBody(), true);
+        $user = json_decode($response->getBody(), true);
 
-        // print_r($data);
-
-        if(sizeof($data) === 0) {
+        if(sizeof($user) === 0) {
 
             $status = false;
 
             return view('bienvenida', ['status' => $status]);
         } else {
 
-            session()->put('user', $data[0]['email']);
+            session()->put('user', $user[0]);
 
-            $tipousuario = $data[0]['tipoUsuario']['idTipoUsuario'];
+            $tipousuario = $user[0]['tipoUsuario']['idTipoUsuario'];
             if($tipousuario == 1) {
                 return view('inicio');
             }
+
             return redirect('/menu');
         }
     }
 
     public function registrarUsuario(Request $request) {
 
-        echo $request;
+        $name = $request->name;
+        $lastName = $request->lastName;
+        $email = $request->email;
+        $password = $request->password;
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('POST', 'usuarios/crear/usuario',[
+                'body' => json_encode([
+                    'nombre' => $name,
+                    'apellido' => $lastName,
+                    'email' => $email,
+                    'contrasenia' => $password
+                ])
+        ]);
+
+        $user = json_decode($response->getBody(), true);
+
+        print_r($user);
+
+        return;
 
         return redirect('/menu');
     }

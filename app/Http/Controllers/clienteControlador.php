@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use GuzzleHttp\Client;
+
 class clienteControlador extends Controller
 {
 
@@ -20,11 +22,7 @@ class clienteControlador extends Controller
 
         if(session()->get('user') === null) return redirect('/');
 
-        $order = array(
-            'id' => $request->id,
-            'cantidad' => $request->cantidad,
-            'tipo' => $request->tipo
-        );
+        $order = $request->all();
 
         return view('reservacion', compact('order'));
     }
@@ -57,76 +55,41 @@ class clienteControlador extends Controller
         $data = array();
         $data = $request->all();
 
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'platillos/' . $data['id']);
+
+        $platillo = json_decode($response->getBody(), true);
+
         // return view('metodo_pago');
 
         if($data['tipo'] == 'reserva') {
 
-            return view('compra_reserva', compact('data'));
+            return view('compra_reserva', compact('data', 'platillo'));
         }
 
-        return view('compra_domicilio', compact('data'));
+        return view('compra_domicilio', compact('data', 'platillo'));
     }
 
     public function verEspecialidad($id) {
 
         if(session()->get('user') === null) return redirect('/');
 
-        $order = array(
-            'platillo' => "$id"
-        );
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'platillos/' . $id);
 
-        return view('verEspecialidad', compact('order'));
-    }
+        $data = json_decode($response->getBody(), true);
 
-    private function getData() {
-
-	    $data = array(
-            array(
-                'id' => '1',
-                'name' => 'Cheese pizza',
-                'description' => 'Nuestra clasica pizza de queso',
-                'img' => '1.jpg'
-            ),
-            array(
-                'id' => '2',
-                'name' => 'Pepperoni',
-                'description' => 'Queso mozarella, parmesano, pepperoni y oregano',
-                'img' => '2.jpg'
-            ),
-            array(
-                'id' => '3',
-                'name' => 'Vegetariana',
-                'description' => 'Queso mozarella, cebolla, pimiento, champinones, aceitunas',
-                'img' => '3.jpg'
-            ),
-            array(
-                'id' => '4',
-                'name' => 'Hawaiana',
-                'description' => 'Pizza de pi;a y jamon',
-                'img' => '4.jpg'
-            ),
-            array(
-                'id' => '1',
-                'name' => 'Pepperoni',
-                'description' => 'Queso mozarella, parmesano, pepperoni y oregano',
-                'img' => '1.jpg'
-            ),
-            array(
-                'id' => '1',
-                'name' => 'Pepperoni',
-                'description' => 'Queso mozarella, parmesano, pepperoni y oregano',
-                'img' => '1.jpg'
-            ),
-        );
-
-        return $data;
+        return view('verEspecialidad', compact('data'));
     }
 
     public function menu() {
 
         if(session()->get('user') === null) return redirect('/');
 
-	    $data = $this->getData();
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'platillos/obtener/todos');
+
+        $data = json_decode($response->getBody(), true);
 
         return view('menu', compact('data'));
     }

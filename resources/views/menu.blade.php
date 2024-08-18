@@ -39,12 +39,12 @@
 
                     @foreach($data as $item)
                         <div class="p-4 col bg-white rounded-3">
-                            <a href="{{ route('ver.especialidad', $item['id']) }}">
-                              <img class="menu-items-img my-2" src="{{ URL::to('/') }}/img/menu/{{ $item['img'] }}">
-                              <p class="text-black fw-bold">{{ $item['name'] }}</p>
+                            <a href="{{ route('ver.especialidad', $item['idPlatillo']) }}">
+                              <img class="menu-items-img my-2" src="{{ URL::to('/') }}/img/menu/{{ $item['img'] }}.jpg">
+                              <p class="text-black fw-bold">{{ $item['nombre'] }}</p>
                             </a>
                             <div class="bg-danger text-white p-3 mb-2">DISPONIBLE</div>
-                            <p class="text-black">{{ $item['description'] }}</p>
+                            <p class="text-black">{{ $item['descripcion'] }}</p>
                         </div>
                     @endforeach
 
