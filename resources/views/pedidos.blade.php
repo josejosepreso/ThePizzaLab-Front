@@ -37,23 +37,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            @foreach($pedidos as $pedido)
+              <tr>
+                <th scope="row">{{ $pedido['idPedidoDomicilio'] }}</th>
+                <td><a href="{{ route('ver.usuario', $pedido['orden']['usuario']['idUsuario']) }}">{{ $pedido['orden']['usuario']['nombre'] }} {{ $pedido['orden']['usuario']['apellido'] }}</a></td>
+                <td>{{ $pedido['orden']['idOrden'] }}</td>
+                <td>{{ $pedido['direccion'] }}</td>
+                <td>{{ $pedido['orden']['status'] }}</td>
+                <td>{{ $pedido['fechaEntrega'] }}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
     </div>

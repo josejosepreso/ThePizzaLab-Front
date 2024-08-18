@@ -34,14 +34,23 @@
                 <div class="form-container">
                     <form action="{{ route('metodo.pago') }}" method="GET">
 
+                        <input name="tipo" value="{{ $data['tipo'] }}" style="display:none;">
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">Cliente</label>
+                            <input class="col form-control" id="" name="cliente" value="{{ $data['cliente'] }}" readonly>
+                        </div>
+
+
+
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="">Platillo</label>
-                            <input class="col form-control" id="" name="" value="{{ $platillo['nombre'] }}" readonly>
+                            <input class="col form-control" id="" name="platillo" value="{{ $platillo['nombre'] }}" readonly>
                         </div>
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="">Precio unitario</label>
-                            <input class="col form-control" id="" name="" value="{{ $platillo['precio'] }} Lps" readonly>
+                            <input class="col form-control" id="" name="precio_unit" value="{{ $platillo['precio'] }} Lps" readonly>
                         </div>
 
                         <div class="form-group my-2 fw-bold row align-items-start">
@@ -63,7 +72,7 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="">Precio de envio</label>
-                            <input class="col form-control" id="" name="" value="{{ $precio_envio }} Lps" readonly>
+                            <input class="col form-control" id="" name="precio_envio" value="{{ $precio_envio }} Lps" readonly>
                         </div>
 
                         @php
@@ -81,7 +90,7 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="">Total</label>
-                            <input class="col form-control" id="" name="isv" value="{{ $total }} Lps" readonly>
+                            <input class="col form-control" id="" name="total" value="{{ $total }} Lps" readonly>
                         </div>
 
                         <div class="form-group my-2 fw-bold row align-items-start">

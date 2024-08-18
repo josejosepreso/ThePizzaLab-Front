@@ -32,28 +32,21 @@
               <th scope="col">Usuario</th>
               <th scope="col">Numero de mesa</th>
               <th scope="col">Estado</th>
-              <th scope="col">Fecha</th>
+              <th scope="col">Fecha inicio</th>
               <th scope="col">Fecha fin</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+            @foreach($reservaciones as $reservacion)
+              <tr>
+                <th scope="row">{{ $reservacion['idReservacion'] }}</th>
+                <td><a href="{{ route('ver.usuario', $reservacion['orden']['usuario']['idUsuario']) }}">{{ $reservacion['orden']['usuario']['nombre'] }} {{ $reservacion['orden']['usuario']['apellido'] }}</a></td>
+                <td>{{ $reservacion['mesa']['codigoMesa'] }}</td>
+                <td>{{ $reservacion['orden']['status'] }}</td>
+                <td>{{ $reservacion['fechaInicio'] }}</td>
+                <td>{{ $reservacion['fechaFinal'] }}</td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
     </div>

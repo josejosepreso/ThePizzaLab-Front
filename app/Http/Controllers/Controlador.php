@@ -38,7 +38,10 @@ class Controlador extends Controller
             return view('bienvenida', ['status' => $status]);
         } else {
 
-            session()->put('user', $user[0]);
+            $username = $user[0]['nombre'] . ' ' . $user[0]['apellido'];
+
+            session()->put('user', $username);
+            session()->put('userId', $user[0]['idUsuario']);
 
             $tipousuario = $user[0]['tipoUsuario']['idTipoUsuario'];
             if($tipousuario == 1) {
@@ -67,6 +70,9 @@ class Controlador extends Controller
         ]);
 
         $user = json_decode($response->getBody(), true);
+
+        session()->put('user', $name . ' ' . $lastName);
+        session()->put('userId', $user[0]['idUsuario']);
 
         return redirect('/menu');
     }

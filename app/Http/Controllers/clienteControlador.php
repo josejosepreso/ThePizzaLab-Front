@@ -41,19 +41,22 @@ class clienteControlador extends Controller
         return view('pedido_domicilio', compact('order'));
     }
 
-    public function pago() {
+    public function pago(Request $request) {
 
         if(session()->get('user') === null) return redirect('/');
 
-        return view('metodo_pago');
+        $data = $request->all();
+
+        return view('metodo_pago', compact('data'));
     }
 
     public function informacionCompra(Request $request) {
 
         if(session()->get('user') === null) return redirect('/');
 
-        $data = array();
-        $data = $request->all();
+        $info = $request->all();
+        $array = array('cliente' => session()->get("user"));
+        $data = array_merge($info, $array);
 
         $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
         $response = $client->request('GET', 'platillos/' . $data['id']);
@@ -92,5 +95,52 @@ class clienteControlador extends Controller
         $data = json_decode($response->getBody(), true);
 
         return view('menu', compact('data'));
+    }
+
+    public function compraRealizada(Request $request) {
+
+        $data = $request->all();
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+
+        $response = $client->request('POST', 'ordenes/crear/orden',[
+                'body' => json_encode([
+                    'usuario' => array('idUsuario' => session()->get("userId")),
+                    'status' => 'Pendiente'
+                ])
+        ]);
+        $order = json_decode($response->getBody(), true);
+
+        $response = $client->request('POST', 'facturas/crear/factura',[
+                'body' => json_encode([
+                    'orden' => array('idOrden' => $order['idOrden']),
+                    'isv' => str_replace('Lps', '', $data['isv']),
+                    'total' => str_replace('Lps', '', $data['total'])
+                ])
+        ]);
+        $receipt = json_decode($response->getBody(), true);
+
+        if($data['tipo'] === 'pedido') {
+
+            $response = $client->request('POST', 'pedidos/crear',[
+                    'body' => json_encode([
+                        'orden' => array('idOrden' => $order['idOrden']),
+                        'direccion' => $data['direccion'],
+                        'precioenvio' => str_replace('Lps','',$data['precio_envio'])
+                    ])
+            ]);
+        } else {
+
+            $timestamp = strtotime($data['fecha'] . ' ' . $data['hora']);
+            $response = $client->request('POST', 'reservaciones/crear/reservacion',[
+                    'body' => json_encode([
+                        'fechaInicio' => $timestamp,
+                        'mesa' => array('codigoMesa' => $data['mesa']),
+                        'orden' => array('idOrden' => $order['idOrden'])
+                    ])
+            ]);
+        }
+
+        return view('compraRealizada');
     }
 }

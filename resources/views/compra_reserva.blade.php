@@ -32,7 +32,15 @@
             <div class="p-4 bg-light shadow-lg mb-3" style="width:30vw;border-radius:10px;">
 
                 <div class="form-container">
-                    <form action="{{ route('metodo.pago') }}" method="GET">
+                    <form action="{{ route('metodo.pago')}}" method="GET">
+
+
+                        <input name="tipo" value="{{ $data['tipo'] }}" style="display:none;">
+
+                        <div class="form-group my-2 fw-bold row align-items-start">
+                            <label class="col" for="">Cliente</label>
+                            <input class="col form-control" id="" name="cliente" value="{{ $data['cliente'] }}" readonly>
+                        </div>
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="platillo">Platillo</label>

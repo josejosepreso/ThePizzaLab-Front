@@ -33,15 +33,21 @@ Route::get('/administracion/pedidos', [administradorControlador::class, 'pedidos
 
 Route::get('/administracion/inventario', [administradorControlador::class, 'verInventario'])->name('ver.inventario');
 
+Route::get('/administracion/especialidades/eliminar/{id}', [administradorControlador::class, 'eliminarPlatillo'])->name('eliminar.platillo');
+
 Route::get('/administracion/especialidades/crear', [administradorControlador::class, 'crearPlatillo'])->name('crear.platillo');
 
 Route::get('/administracion/especialidades/crear/guardar', [administradorControlador::class, 'guardarPlatillo'])->name('guardar.platillo');
+
+Route::get('/administracion/especialidades/actualizar', [administradorControlador::class, 'actualizarPlatillo'])->name('actualizar.platillo');
 
 Route::get('/administracion/usuarios', [administradorControlador::class, 'verUsuarios'])->name('ver.usuarios');
 
 Route::get('/administracion/usuarios/{id}', [administradorControlador::class, 'verUsuario'])->name('ver.usuario');
 
 Route::get('/administracion/usuarios/{id}/actualizar', [administradorControlador::class, 'actualizarUsuario'])->name('actualizar.usuario');
+
+Route::get('/administracion/facturas', [administradorControlador::class, 'verFacturas'])->name('ver.facturas');
 
 
 
@@ -61,3 +67,5 @@ Route::get('/pago', [clienteControlador::class, 'pago'])->name('metodo.pago');
 Route::get('/compra', [clienteControlador::class, 'informacionCompra'])->name('ver.compra');
 
 Route::get('/especialidad/{id}', [clienteControlador::class, 'verEspecialidad'])->name('ver.especialidad');
+
+Route::get('/compra/realizada', [clienteControlador::class, 'compraRealizada'])->name('compra.realizada');

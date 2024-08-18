@@ -65,7 +65,7 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="">Archivo de imagen:</label>
-                            <input class="col form-control" id="" name="" type="text">
+                            <input class="col form-control" id="" name="img" type="text">
                         </div>
                     
 
@@ -96,7 +96,7 @@
                     <div class="form-group mb-2 mx-3">
                         <div class="row">
                             <label class="col fw-bold" for="{{ $ingrediente['nombre'] }}">{{ $ingrediente['nombre'] }}:</label>
-                            <input form="col main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['nombre'] }}" value="0" required>
+                            <input form="main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['nombre'] }}" value="0" required>
                             <p class="small col">{{ $ingrediente['unidad'] }}</p>
                         </div>
                     </div>

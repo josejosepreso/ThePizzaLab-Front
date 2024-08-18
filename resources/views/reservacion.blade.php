@@ -55,7 +55,7 @@
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="mesa">Numero de mesa:</label>
-                            <input class="col form-control" type="number" id="" name="mesa" value="1" required>
+                            <input class="col form-control" type="number" id="" name="mesa" value="1" min="1" max="5" required>
                         </div>
 
                         <div class="d-flex justify-content-center">

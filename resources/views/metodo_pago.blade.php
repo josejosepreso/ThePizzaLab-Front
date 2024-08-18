@@ -30,7 +30,10 @@
 
         <div class="d-flex justify-content-center">
             <div style="width:60%;height:50vh;" class="rounded-4 bg-white shadow-lg row row-cols-1 bg-light d-flex justify-content-center p-4">
-                <a href="#" class="order-option form-control bg-white my-2 d-flex align-items-center">
+                <a href="{{ route('compra.realizada', $data) }}"" class="order-option form-control bg-white my-2 d-flex align-items-center">
+
+
+                    <input value="{{ $data['tipo'] }}" style="display:none;">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
                         <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z"/>
@@ -41,7 +44,7 @@
                     <p class="h2 mx-5 fw-bold">Tarjeta</p>
 
                 </a>
-                <a href="#" class="order-option form-control bg-white my-2 d-flex align-items-center">
+                <a href="{{ route('compra.realizada', $data) }}" class="order-option form-control bg-white my-2 d-flex align-items-center">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
                         <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>

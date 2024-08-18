@@ -35,11 +35,11 @@
             <div class="p-4 bg-light shadow-lg" style="width:30vw;border-radius:10px;">
 
                 <div class="form-container">
-                    <form method="GET">
+                    <form id="main-form" method="GET" action="{{ route('actualizar.platillo') }}">
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="id">ID:</label>
-                            <input class="col form-control" id="" name="id" value="{{ $idEspecialidad }}" readonly>
+                            <input class="col form-control" id="" name="id" value="{{ $platillo['idPlatillo'] }}" readonly>
                         </div>
 
 
@@ -50,15 +50,15 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="nombre">Nombre:</label>
-                            <input class="col form-control" id="" name="nombre" type="text" required>
+                            <input class="col form-control" id="" name="nombre" type="text" value="{{ $platillo['nombre'] }}" required>
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="descripcion">Descripcion:</label>
-                            <textarea class="col form-control" id="" name="descripcion" value=""></textarea>
+                            <textarea class="col form-control" id="" name="descripcion">{{ $platillo['descripcion'] }}</textarea>
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="precio">Precio:</label>
-                            <input class="col form-control" type="text" id="" name="precio" value="" required>
+                            <input class="col form-control" type="text" id="" name="precio" value="{{ $platillo['precio'] }}" required>
                         </div>
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="tipoPlatillo">Tipo de platillo:</label>
@@ -75,7 +75,7 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="">Archivo de imagen:</label>
-                            <input class="col form-control" id="" name="" type="text">
+                            <input class="col form-control" id="" name="img" type="text" value="{{ $platillo['img'] }}">
                         </div>
 
 
@@ -103,7 +103,8 @@
 
 
                         <div class="d-flex justify-content-center">
-                            <button class="mt-4 px-4 btn bg-black text-white fw-bold" type="submit">Guardar</button>
+                            <a href="{{ route('eliminar.platillo', $platillo['idPlatillo'] ) }}" class="mt-4 mx-2 px-4 btn bg-danger text-white fw-bold">Eliminar</a>
+                            <button class="mt-4 mx-2 px-4 btn bg-black text-white fw-bold" type="submit">Guardar</button>
                         </div>
                     </form>
                 </div>
