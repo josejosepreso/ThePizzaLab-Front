@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg bg-success bg-gradient shadow">
       <div class="container-fluid p-3">
         
-        <img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png">
+        <a href="{{ route('menu') }}"><img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png"></a>
 
       </div>
     </nav>
@@ -34,6 +34,7 @@
                 <div class="form-container">
                     <form action="{{ route('metodo.pago') }}" method="GET">
 
+                        <input name="id" value="{{ $platillo['idPlatillo'] }}" style="display:none;">
                         <input name="tipo" value="{{ $data['tipo'] }}" style="display:none;">
 
                         <div class="form-group my-2 fw-bold row align-items-start">

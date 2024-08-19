@@ -55,6 +55,7 @@ class clienteControlador extends Controller
         if(session()->get('user') === null) return redirect('/');
 
         $info = $request->all();
+
         $array = array('cliente' => session()->get("user"));
         $data = array_merge($info, $array);
 
@@ -118,7 +119,8 @@ class clienteControlador extends Controller
                     'total' => str_replace('Lps', '', $data['total'])
                 ])
         ]);
-        $receipt = json_decode($response->getBody(), true);
+
+        $response = $client->request('POST', 'ordenes-platillos/crear?idOrden=' . $order['idOrden'] . '&idPlatillo=' . $data['id']. '&cantidad=' . $data['cantidad']);
 
         if($data['tipo'] === 'pedido') {
 

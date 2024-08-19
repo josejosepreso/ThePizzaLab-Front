@@ -68,11 +68,10 @@ class Controlador extends Controller
                     'contrasenia' => $password
                 ])
         ]);
-
         $user = json_decode($response->getBody(), true);
 
         session()->put('user', $name . ' ' . $lastName);
-        session()->put('userId', $user[0]['idUsuario']);
+        session()->put('userId', $user['idUsuario']);
 
         return redirect('/menu');
     }

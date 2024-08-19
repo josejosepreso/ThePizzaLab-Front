@@ -60,17 +60,11 @@
                             <label class="col" for="precio">Precio:</label>
                             <input class="col form-control" type="text" id="" name="precio" value="{{ $platillo['precio'] }}" required>
                         </div>
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="tipoPlatillo">Tipo de platillo:</label>
-                            <select class="col form-control border-2" name="tipoPlatillo" required>
-                                <option value="1" selected>Tipo de platillo</option>
-                                <option value="2">Opcion</option>
-                            </select>
-                        </div>
+
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col">Ingredientes:</label>
-                            <a data-bs-toggle="modal" data-bs-target="div#ingredientsModal"  class="col btn bg-black text-white fw-bold">Seleccionar</a>
+                            <a data-bs-toggle="modal" data-bs-target="div#ingredientsModal"  class="col btn bg-black text-white fw-bold">Ver</a>
                         </div>
 
                         <div class="form-group my-2 fw-bold row align-items-start">
@@ -93,13 +87,7 @@
 
 
 
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="">Disponibilidad:</label>
-                            <select class="col form-control border-2" name="" required>
-                                <option value="1" selected>Disponible</option>
-                                <option value="2">No disponible</option>
-                            </select>
-                        </div>
+
 
 
                         <div class="d-flex justify-content-center">
@@ -124,13 +112,12 @@
           <div class="modal-body">
 
             <div class="form-container">
-                <p>Ingrese la cantidad de ingredientes que contiene este platillo.</p>
-                @foreach($data as $ingrediente)
+                @foreach($platillo['platilloIngredientes'] as $platilloIngrediente)
                     <div class="form-group mb-2 mx-3">
                         <div class="row">
-                            <label class="col fw-bold" for="{{ $ingrediente['nombre'] }}">{{ $ingrediente['nombre'] }}:</label>
-                            <input form="main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['nombre'] }}" value="0" required>
-                            <p class="small col">{{ $ingrediente['unidad'] }}</p>
+                            <label class="col fw-bold" for="{{ $platilloIngrediente['ingrediente']['nombre'] }}">{{ $platilloIngrediente['ingrediente']['nombre'] }}:</label>
+                            <input form="main-form" class="col form-control"  id="" name="" value="{{ $platilloIngrediente['cantidadIngrediente'] }}" readonly>
+                            <p class="small col">{{ $platilloIngrediente['ingrediente']['unidad'] }}</p>
                         </div>
                     </div>
                 @endforeach

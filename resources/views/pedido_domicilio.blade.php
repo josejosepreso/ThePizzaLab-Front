@@ -43,7 +43,7 @@
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col" for="amount">Direccion:</label>
-                            <input class="col form-control" id="" name="direccion" type="text" value="Sample" required>
+                            <input class="col form-control" id="" name="direccion" type="text" value="" placeholder="Ingrese su direccion" required>
                         </div>
 
                         <div class="d-flex justify-content-center">

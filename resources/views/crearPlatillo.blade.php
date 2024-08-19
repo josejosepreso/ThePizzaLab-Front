@@ -49,13 +49,7 @@
                             <label class="col" for="precio">Precio:</label>
                             <input class="col form-control" type="text" id="" name="precio" value="" required>
                         </div>
-                        <div class="form-group my-2 fw-bold row align-items-start">
-                            <label class="col" for="tipoPlatillo">Tipo de platillo:</label>
-                            <select class="col form-control border-2" name="tipoPlatillo" required>
-                                <option value="1" selected>Tipo de platillo</option>
-                                <option value="2">Opcion</option>
-                            </select>
-                        </div>
+
 
                         <div class="form-group my-2 fw-bold row align-items-start">
                             <label class="col">Ingredientes:</label>
@@ -96,7 +90,7 @@
                     <div class="form-group mb-2 mx-3">
                         <div class="row">
                             <label class="col fw-bold" for="{{ $ingrediente['nombre'] }}">{{ $ingrediente['nombre'] }}:</label>
-                            <input form="main-form" class="col form-control" type="number" id="" name="cantidad{{ $ingrediente['nombre'] }}" value="0" required>
+                            <input form="main-form" class="col form-control" type="number" step="0.1" id="" name="{{ $ingrediente['idIngrediente'] }}" value="0" required>
                             <p class="small col">{{ $ingrediente['unidad'] }}</p>
                         </div>
                     </div>

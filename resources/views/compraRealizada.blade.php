@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg bg-success bg-gradient shadow">
       <div class="container-fluid p-3">
         
-        <img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png">
+        <a href="{{ route('menu') }}"><img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png"></a>
 
       </div>
     </nav>

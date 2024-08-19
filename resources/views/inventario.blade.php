@@ -16,14 +16,16 @@
     <nav class="navbar navbar-expand-lg bg-success bg-gradient shadow">
       <div class="container-fluid p-3">
         
-        <img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png">
+        <a href="{{ route('inicio') }}"><img style="width:400px;" src="{{ URL::to('/') }}/img/logo.png"></a>
 
 
       </div>
     </nav>
 
     <div class="container">
-        <h2 class="text-black my-4 fw-bold">Gestion de inventario</h2>
+        <h2 class="text-black mt-4 fw-bold">Gestion de inventario</h2>
+
+        <a class="btn bg-black text-white fw-bold my-4" href="{{ route('crear.ingrediente') }}">Crear ingrediente</a>
 
         <table class="table table-light rounded-4 overflow-hidden shadow">
           <thead>
@@ -42,11 +44,17 @@
               <tr>
                 <th scope="row">{{ $ingredient['idIngrediente'] }}</th>
                 <td>{{ $ingredient['nombre'] }}</td>
-                <td>{{ $ingredient['cantidadDisponible'] }}</td>
+                @php
+                  $text = "";
+                  if($ingredient['cantidadDisponible'] <= $ingredient['puntoreorden']) {
+                    $text = "text-danger fw-bold";
+                  }
+                @endphp
+                <td class="{{ $text }}">{{ $ingredient['cantidadDisponible'] }}</td>
                 <td>{{ $ingredient['puntoreorden'] }}</td>
                 <td>{{ $ingredient['unidad'] }}</td>
                 <td>{{ $ingredient['proveedor']['nombre'] }}</td>
-                <td><a href="#">Crear pedido</a></td>
+                <td><a href="{{ route('crear.pedido', $ingredient['idIngrediente']) }}">Crear pedido</a></td>
               </tr>
             @endforeach
           </tbody>

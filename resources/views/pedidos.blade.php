@@ -34,6 +34,7 @@
               <th scope="col">Direccion</th>
               <th scope="col">Estado</th>
               <th scope="col">Fecha</th>
+              <th scope="col">Opciones</th>
             </tr>
           </thead>
           <tbody>
@@ -45,6 +46,13 @@
                 <td>{{ $pedido['direccion'] }}</td>
                 <td>{{ $pedido['orden']['status'] }}</td>
                 <td>{{ $pedido['fechaEntrega'] }}</td>
+                @php
+                  $option = "";
+                  if($pedido['orden']['status'] === "Pendiente") {
+                    $option = "Confirmar";
+                  }
+                @endphp
+                <td><a href="{{ route('confirmar.orden', $pedido['orden']['idOrden']) }}">{{ $option }}</a></td>
               </tr>
             @endforeach
           </tbody>

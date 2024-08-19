@@ -34,6 +34,7 @@
               <th scope="col">ISV</th>
               <th scope="col">Total</th>
               <th scope="col">Fecha</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -42,9 +43,10 @@
                 <th scope="row">{{ $factura['idFactura'] }}</th>
                 <td>{{ $factura['orden']['usuario']['nombre'] }} {{ $factura['orden']['usuario']['apellido'] }}</td>
                 <td>{{ $factura['orden']['idOrden'] }}</td>
-                <td>{{ $factura['isv'] }}</td>
-                <td>{{ $factura['total'] }}</td>
+                <td>{{ $factura['isv'] }} Lps</td>
+                <td>{{ $factura['total'] }} Lps</td>
                 <td>{{ $factura['fechaEntrega'] }}</td>
+                <td><a href="{{ route('ver.factura', $factura['idFactura']) }}">Detalles</a></td>
               </tr>
             @endforeach
           </tbody>

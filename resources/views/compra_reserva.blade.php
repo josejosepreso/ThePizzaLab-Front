@@ -35,6 +35,7 @@
                     <form action="{{ route('metodo.pago')}}" method="GET">
 
 
+                        <input name="id" value="{{ $platillo['idPlatillo'] }}" style="display:none;">
                         <input name="tipo" value="{{ $data['tipo'] }}" style="display:none;">
 
                         <div class="form-group my-2 fw-bold row align-items-start">

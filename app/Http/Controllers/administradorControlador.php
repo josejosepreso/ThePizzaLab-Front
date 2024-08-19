@@ -102,6 +102,13 @@ class administradorControlador extends Controller
                     'img' => $data['img'],
                 ])
         ]);
+        $platillo = json_decode($response->getBody(), true);
+
+        $ingredientes = array_slice($data,4,4,true);
+        foreach($ingredientes as $ingrediente => $cantidad){
+            $response = $client->request('POST','platillos/ingredientes/asociar?idPlatillo=' . $platillo['idPlatillo'] . '&idIngrediente=' . $ingrediente . '&cantidad=' . $cantidad);
+        }
+
         return redirect('/administracion/especialidades');
     }
 
@@ -168,6 +175,26 @@ class administradorControlador extends Controller
         return redirect("/administracion/usuarios");
     }
 
+    public function eliminarUsuario($id) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('DELETE', 'usuarios/eliminar/' . $id);
+
+        return redirect('/administracion/usuarios');
+    }
+
+    public function verFactura($id) {
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'facturas/' . $id);
+        $factura = json_decode($response->getBody(), true);
+
+        return view('verFactura', compact('factura'));
+    }
+
     public function verFacturas() {
 
         if(session()->get('user') === null) return redirect('/');
@@ -186,6 +213,65 @@ class administradorControlador extends Controller
         $response = $client->request('DELETE', 'platillos/eliminar/' . $id);
 
         return redirect('/administracion/especialidades');
+    }
+
+    public function confirmarPedidoProveedor(Request $request, $id) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('POST', 'pedido/proveedor/crear?idIngrediente=' . $id . '&cantidad=' . $request['cantidad']);
+
+        return redirect('/administracion/inventario');
+
+    }
+
+    public function pedidoProveedor($id) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('GET', 'ingredientes/' . $id);
+
+        $ingrediente = json_decode($response->getBody(), true);
+
+        return view('pedidoProveedor', compact('ingrediente'));
+    }
+
+    public function crearIngrediente() {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        return view('crearIngrediente');
+    }
+
+    public function guardarIngrediente(Request $request) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('POST', 'ingredientes/crear/ingrediente', [
+                'body' => json_encode([
+                    'nombre' => $request['nombre'],
+                    'puntoreorden' => $request['puntoreorden'],
+                    'unidad' => $request['unidad'],
+                    'proveedor' => array('nombre' => $request['proveedor'])
+                ])
+        ]);
+
+        $ingrediente = json_decode($response->getBody(), true);
+
+        return redirect('/administracion/inventario');
+    }
+
+    public function confirmarOrden($id) {
+
+        if(session()->get('user') === null) return redirect('/');
+
+        $client = new Client([ 'base_uri' => 'localhost:8091/api/', 'headers' => [ 'Content-Type' => 'application/json' ]]);
+        $response = $client->request('PUT', 'ordenes/confirmar/' . $id);
+
+        return redirect()->back();
     }
 
 }

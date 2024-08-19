@@ -68,8 +68,7 @@
 
 
                         <div class="d-flex justify-content-center">
-                            <a class="mt-4 mx-2 px-4 btn bg-danger text-white fw-bold">Eliminar</a>
-                            <a class="mt-4 mx-2 px-4 btn bg-black text-white fw-bold">Ordenes</a>
+                            <a href="{{ route('eliminar.usuario', $user['idUsuario']) }}" class="mt-4 mx-2 px-4 btn bg-danger text-white fw-bold">Eliminar</a>
                             <button class="mt-4 mx-2 px-4 btn bg-black text-white fw-bold" type="submit">Guardar</button>
                         </div>
                     </form>

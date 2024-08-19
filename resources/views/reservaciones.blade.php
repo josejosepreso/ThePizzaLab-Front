@@ -45,6 +45,13 @@
                 <td>{{ $reservacion['orden']['status'] }}</td>
                 <td>{{ $reservacion['fechaInicio'] }}</td>
                 <td>{{ $reservacion['fechaFinal'] }}</td>
+                @php
+                  $option = "";
+                  if($reservacion['orden']['status'] === "Pendiente") {
+                    $option = "Confirmar";
+                  }
+                @endphp
+                <td><a href="{{ route('confirmar.orden', $reservacion['orden']['idOrden']) }}">{{ $option }}</a></td>
               </tr>
             @endforeach
           </tbody>
