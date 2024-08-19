@@ -71,11 +71,11 @@
                 <form action="{{ route('iniciar.sesion') }}" method="GET">
                     <div class="form-group my-2 fw-bold">
                         <label for="email">Usuario o Correo:</label>
-                        <input class="form-control" type="email" id="email" name="email" required>
+                        <input class="form-control" type="email" id="email" name="email" value="admin@gmail.com" required>
                     </div>
                     <div class="form-group my-2 fw-bold">
                         <label for="password">Contrase;a:</label>
-                        <input class="form-control" type="password" id="password" name="password"  required>
+                        <input class="form-control" type="password" id="password" name="password" value="abc"  required>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button class="my-4 px-4 btn btn-success fw-bold" type="submit">Iniciar sesion</button>

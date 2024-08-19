@@ -89,8 +89,8 @@
                 @foreach($data as $ingrediente)
                     <div class="form-group mb-2 mx-3">
                         <div class="row">
-                            <label class="col fw-bold" for="{{ $ingrediente['nombre'] }}">{{ $ingrediente['nombre'] }}:</label>
-                            <input form="main-form" class="col form-control" type="number" step="0.1" id="" name="{{ $ingrediente['idIngrediente'] }}" value="0" required>
+                            <label class="col fw-bold" for="{{ $ingrediente['idIngrediente'] }}">{{ $ingrediente['nombre'] }}:</label>
+                            <input form="main-form" class="col form-control" type="number" step="0.1" name="{{ $ingrediente['idIngrediente'] }}" value="0" required>
                             <p class="small col">{{ $ingrediente['unidad'] }}</p>
                         </div>
                     </div>

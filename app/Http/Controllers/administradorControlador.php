@@ -104,7 +104,7 @@ class administradorControlador extends Controller
         ]);
         $platillo = json_decode($response->getBody(), true);
 
-        $ingredientes = array_slice($data,4,4,true);
+        $ingredientes = array_slice($data,4,null,true);
         foreach($ingredientes as $ingrediente => $cantidad){
             $response = $client->request('POST','platillos/ingredientes/asociar?idPlatillo=' . $platillo['idPlatillo'] . '&idIngrediente=' . $ingrediente . '&cantidad=' . $cantidad);
         }
